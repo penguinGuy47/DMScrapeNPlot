@@ -6,6 +6,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from datetime import datetime, timedelta
+
 import requests
 import time
 import matplotlib.pyplot as plt
@@ -56,7 +58,7 @@ while True:
     else:
         # Click the "Next" button to move to the next page
         next_button.click()
-        time.sleep(3)
+        time.sleep(1)
 
 driver.quit()
 

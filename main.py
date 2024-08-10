@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 driver = webdriver.Chrome(service=Service("chromedriver.exe"))
 
 # Change the url to the specific collection
-url = 'https://doggy.market/nfts/minidoges'
+url = 'https://doggy.market/nfts/doginaldogs'
 driver.get(url)
 
 all_prices = []
@@ -53,8 +53,9 @@ while True:
     for element in price_elements:
         if element.text == "Price":
             continue
-        all_prices.append(element.text)
-        print(element.text)
+        price_text = element.text.replace(',', '')
+        all_prices.append(price_text)
+        print(price_text)
 
     # Check the "Next" button's aria-disabled attribute
     next_button = driver.find_element(By.XPATH, "//li[@class='pagination-item next']")

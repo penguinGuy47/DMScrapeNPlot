@@ -1,6 +1,7 @@
 import plotly.graph_objs as go
 import numpy as np
 
+# 
 with open('output.txt', 'r') as file:
     # Read all lines into a list
     prices = [float(line.strip()) for line in file.readlines()]

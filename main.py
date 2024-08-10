@@ -72,7 +72,7 @@ driver.quit()
 
 all_prices.reverse()
 
-with open("miniDogesPriceHistory.txt", "w") as file:
+with open("output.txt", "w") as file:
     for number in all_prices:
         file.write(f"{number}\n")
 

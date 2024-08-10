@@ -5,8 +5,6 @@ with open('output.txt', 'r') as file:
     # Read all lines into a list
     prices = [float(line.strip()) for line in file.readlines()]
 
-# lines = [line.strip() for line in lines]
-
 # Create a range of dates for the x-axis
 from datetime import datetime, timedelta
 
@@ -36,8 +34,7 @@ fig.update_layout(
         type="linear"
     ),
     height=600,
-    width=1400  # Increased width for better visibility
+    width=1400
 )
 
-# Show the interactive plot
 fig.show()

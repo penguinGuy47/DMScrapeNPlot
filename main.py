@@ -12,10 +12,18 @@ import requests
 import time
 import matplotlib.pyplot as plt
 
+#
+#
+# grab the dates and parse
+#
+#
+
+
 # Setup Selenium
-options = Options()
-options.headless = True  # Run in headless mode
-driver = webdriver.Chrome(service=Service("chromedriver.exe"), options=options)
+# options = Options()
+# options.headless = True  # Run in headless mode
+# driver = webdriver.Chrome(service=Service("chromedriver.exe"), options=options)
+driver = webdriver.Chrome(service=Service("chromedriver.exe"))
 
 # Change the url to the specific collection
 url = 'https://doggy.market/nfts/minidoges'

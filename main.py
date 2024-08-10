@@ -80,9 +80,9 @@ plt.figure(figsize=(40, 6))
 
 # Plot prices
 plt.plot(all_prices, marker='o', linestyle='-', color='b')
-plt.title("Price Trend of Mini Doges")
+plt.title("Price Trend")
 plt.xlabel("Data Points (Starting from the Latest)")
-plt.ylabel("Price (USD)")
+plt.ylabel("Price (DOGE)")
 plt.grid(True)
 plt.show()
 

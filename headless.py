@@ -8,6 +8,9 @@ from selenium.webdriver.chrome.options import Options
 import time
 import matplotlib.pyplot as plt
 
+# STILL FINDING A WAY TO GET PASS HEADLESS CHECK
+# THIS SCRIPT MAY RESULT IN IP BAN ON DM
+
 # Optimize
 options = Options()
 options.add_argument("--headless")  # Ensure headless mode is enabled

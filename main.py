@@ -23,6 +23,23 @@ import matplotlib.pyplot as plt
 # options = Options()
 # options.headless = True  # Run in headless mode
 # driver = webdriver.Chrome(service=Service("chromedriver.exe"), options=options)
+
+def parse_date(date_str):
+    if "ago" in date_str:
+        now = datetime.now()
+        if "hours" in date_str:
+            hours = int(date_str.split()[0])
+            # print(now - timedelta(hours=hours))
+            return now - timedelta(hours=hours)
+            
+        elif "minutes" in date_str:
+            minutes = int(date_str.split()[0])
+            # print(now - timedelta(minutes=minutes))
+            return now - timedelta(minutes=minutes)
+    else:
+        # print(datetime.strptime(date_str, "%d.%m.%Y %H:%M:%S"))
+        return datetime.strptime(date_str, "%d.%m.%Y %H:%M:%S")
+    
 driver = webdriver.Chrome(service=Service("chromedriver.exe"))
 
 # Change the url to the specific collection
@@ -30,6 +47,7 @@ url = 'https://doggy.market/nfts/doginaldogs'
 driver.get(url)
 
 all_prices = []
+all_dates = []
 
 time.sleep(4)
 wait = WebDriverWait(driver, 10)
@@ -45,17 +63,29 @@ while True:
     try:
         # price_elements = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "usd-value")))
         price_elements = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "price")))
+        date_elements = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "date")))
     except (RuntimeError, TypeError, NameError):
         print("Timeout occurred, element not found.")
         break
     
-    # Append all found prices
+    # add prices to array
     for element in price_elements:
         if element.text == "Price":
             continue
         price_text = element.text.replace(',', '')
         all_prices.append(price_text)
-        print(price_text)
+        # print(price_text)
+
+    # add dates to array
+    for dt in date_elements:
+        # skip elements that just contains "Date"
+        if dt.text == "Date":
+            continue
+        else:
+            # print("appending")
+            all_dates.append(parse_date(dt.text))
+            
+        # date_text = dt.text.replace()
 
     # Check the "Next" button's aria-disabled attribute
     next_button = driver.find_element(By.XPATH, "//li[@class='pagination-item next']")

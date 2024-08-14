@@ -29,15 +29,15 @@ def parse_date(date_str):
         now = datetime.now()
         if "hours" in date_str:
             hours = int(date_str.split()[0])
-            print(now - timedelta(hours=hours))
+            # print(now - timedelta(hours=hours))
             return now - timedelta(hours=hours)
             
         elif "minutes" in date_str:
             minutes = int(date_str.split()[0])
-            print(now - timedelta(minutes=minutes))
+            # print(now - timedelta(minutes=minutes))
             return now - timedelta(minutes=minutes)
     else:
-        print(datetime.strptime(date_str, "%d.%m.%Y %H:%M:%S"))
+        # print(datetime.strptime(date_str, "%d.%m.%Y %H:%M:%S"))
         return datetime.strptime(date_str, "%d.%m.%Y %H:%M:%S")
     
 driver = webdriver.Chrome(service=Service("chromedriver.exe"))
@@ -82,7 +82,7 @@ while True:
         if dt.text == "Date":
             continue
         else:
-            print("appending")
+            # print("appending")
             all_dates.append(parse_date(dt.text))
             
         # date_text = dt.text.replace()

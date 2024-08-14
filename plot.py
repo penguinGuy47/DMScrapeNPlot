@@ -14,6 +14,9 @@ dates = [start_date + timedelta(days=i) for i in range(1000)]
 
 x_values = list(range(1, len(prices) + 1))
 
+# Uncomment if text file contains prices from newest to oldest
+# prices.reverse()
+
 # Create an interactive line chart
 fig = go.Figure()
 

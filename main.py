@@ -11,10 +11,11 @@ from datetime import datetime, timedelta
 import requests
 import time
 import matplotlib.pyplot as plt
+import numpy as np
 
 #
 #
-# grab the dates and parse
+# adjust y-axis (price) scaling
 #
 #
 
@@ -29,12 +30,12 @@ def parse_date(date_str):
         now = datetime.now()
         if "hours" in date_str:
             hours = int(date_str.split()[0])
-            # print(now - timedelta(hours=hours))
+            # print("hours" + now - timedelta(hours=hours))
             return now - timedelta(hours=hours)
             
         elif "minutes" in date_str:
             minutes = int(date_str.split()[0])
-            # print(now - timedelta(minutes=minutes))
+            # print("minutes" + now - timedelta(minutes=minutes))
             return now - timedelta(minutes=minutes)
     else:
         # print(datetime.strptime(date_str, "%d.%m.%Y %H:%M:%S"))
@@ -102,19 +103,34 @@ while True:
 driver.quit()
 
 all_prices.reverse()
+all_dates.reverse()
 
-with open("output.txt", "w") as file:
+with open("prices.txt", "w") as file:
     for number in all_prices:
+        file.write(f"{number}\n")
+
+with open("dates.txt", "w") as file:
+    for number in all_dates:
         file.write(f"{number}\n")
 
 plt.figure(figsize=(40, 6))
 
 # Plot prices
-plt.plot(all_prices, marker='o', linestyle='-', color='b')
+plt.plot(all_dates, all_prices, marker='o', linestyle='-', color='b')
 plt.title("Price Trend")
-plt.xlabel("Data Points (Starting from the Latest)")
+plt.xlabel("Date")
 plt.ylabel("Price (DOGE)")
 plt.grid(True)
+
+# Display every 200 ticks
+min_price = min(all_prices)
+max_price = max(all_prices)
+num_ticks = float(max_price)/500;
+# yticks(np.arange(num_ticks,200,1))
+# plt.yticks(yticks)
+
+# Format for better readability
+plt.gcf().autofmt_xdate()
 plt.show()
 
 
